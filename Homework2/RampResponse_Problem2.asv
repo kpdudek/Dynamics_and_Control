@@ -1,0 +1,38 @@
+function RampResponse_Problem2()
+
+%% p = 1
+p = 1;
+t = 0:.1:10;
+s = tf('s');
+H = p/(s+p);
+lsim(H,t,t)
+
+%% p = 10
+p = 10;
+t = 0:.01:1.5;
+s = tf('s');
+H = p/(s+p);
+lsim(H,t,t)
+
+%% p = -1
+p = -1;
+t = 0:.1:10;
+s = tf('s');
+H = p/(s+p);
+lsim(H,t,t)
+
+%% p = -10
+p = -10;
+t = 0:.01:1;
+s = tf('s');
+H = p/(s+p);
+lsim(H,t,t)
+
+%% p = 1 , 
+p = 1;
+z = 10.1;
+t = 0:.1:10;
+s = tf('s');
+H = (p/z)*((s+z)/(s+p));
+lsim(H,t,t)
+end

@@ -14,7 +14,7 @@ step(G,20)
 %% Part C
 figure('Name','C')
 s = tf('s');
-G = (exp()/(s^2+2*s+2);
+G = (exp(-10*s))/(s^2+2*s+2);
 step(G,20)
 
 end
