@@ -1,0 +1,16 @@
+function Robot_Arm_P3()
+
+s = tf('s');
+
+% k = [1,5,10,15,20];
+k = [100];
+S = {};
+for ik = 1:1:500%1:length(k)
+    G = k / ((s+10)*(s^2 + 4*s + 10));
+    [y,t] = step(G);
+    S(end+1) = stepinfo(y,t);
+    
+    hold on
+end
+% legend('1','5','10','15','20')
+end
