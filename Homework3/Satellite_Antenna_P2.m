@@ -9,8 +9,10 @@ k = [200,400,1000,2000];
 
 for ik = 1:length(k)
     G = (k(ik)/J) / (s^2 + (B/J)*s + (k(ik)/J));
-    step(G)
+    [y,t] = step(G);
+    plot(t,y,'LineWidth',2)
     hold on
 end
-legend('200','400','1000','2000')
+set(gca,'FontSize',14)
+legend('200','400','1000','2000','Location','southeast')
 end

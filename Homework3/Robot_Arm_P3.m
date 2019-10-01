@@ -14,7 +14,8 @@ for ik = 1:length(k)
     
     ss_error = S.SettlingMax - fv;
     disp(ss_error)
-    step(G)
+    plot(t,y,'LineWidth',2)
+    set(gca,'FontSize',14)
     hold on
 end
 % legend('1','5','10','15','20')
@@ -36,7 +37,8 @@ S = stepinfo(y,t);
 ss_error = S.SettlingMax - fv;
 disp(ss_error)
 
-step(G)
+plot(t,y,'LineWidth',2)
+set(gca,'FontSize',14)
 hold on
 
 
