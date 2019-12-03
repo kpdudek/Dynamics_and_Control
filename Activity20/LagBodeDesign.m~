@@ -1,0 +1,29 @@
+clear; close all; clc;
+
+s = tf('s');
+
+figure('Name','No Controller')
+G = 5*10^8 / ((s+500)*(s^2 + 2000*s + (12000^2)));
+
+bode(G)
+margin(G)
+
+
+
+figure('Name','With Controller')
+
+k = 1412;
+G = k * (100000 / (s^2 + 2000*s + (12000^2)));
+bode(G)
+margin(G)
+
+figure('Name','Step With Controller')
+G = feedback(G,1);
+step(G)
+
+
+figure('Name','With LAG')
+k = 1412;
+G = k * (100000 / (s^2 + 2000*s + (12000^2)));
+bode(G)
+margin(G)
