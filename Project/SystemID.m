@@ -11,6 +11,9 @@ end
 modelIn = indata(:,1);
 modelOut = outdata(:,1);
 
+meanIn = mean(indata,2);
+meanOut = mean(outdata,2);
+
 % figure('Name','Input 1')
 % plot(indata(:,1))
 time = length(modelIn)/350000;
