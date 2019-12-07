@@ -14,11 +14,4 @@ modelOut = outdata(:,1);
 meanIn = mean(indata,2);
 meanOut = mean(outdata,2);
 
-% figure('Name','Input 1')
-% plot(indata(:,1))
-time = length(modelIn)/350000;
-disp(time)
-sampTime = (0:length(modelIn)) .* (1/350000);
-% freq = ones(size(modelIn)) * 350000;
-
 freq = 1 / 350000;

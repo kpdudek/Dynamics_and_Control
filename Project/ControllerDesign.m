@@ -28,3 +28,6 @@ step(CL_PII)
 %% Ramp of PII
 t = 0:.1:10000;
 lsim(CL_PII,t,t)
+
+%% CONTROL SYSTEM DESIGNER
+controlSystemDesigner('bode',model)
