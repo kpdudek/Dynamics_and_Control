@@ -5,23 +5,26 @@ s = tf('s');
 load('Conservative.mat')
 load('Aggresive.mat')
 load('Average.mat')
+load('TwoPOneZ.mat')
 
+
+model = TwoPOneZ;
 %% Closed loop step response of Plant
-CL_P = feedback(Conservative,1);
+CL_P = feedback(model,1);
 figure('Name','CL of Plant')
-step(CL_G)
+step(CL_P)
 
 %% PII Controller
-kp = .001;
-ki = -.001;
-Dc = (kp + ki/s^2);
+kp = .01;
+ki = .001;
+Dc = (kp + (ki/s));
 
 %% OL Bode of PII Controller
-bode(Dc*Conservative)
-margin(Dc*Conservative)
+bode(Dc*model)
+margin(Dc*model)
 
 %% Step of PII
-CL_PII = feedback(Dc*average,1);
+CL_PII = feedback(Dc*model,1);
 figure('Name','PII Control')
 step(CL_PII)
 
