@@ -3,18 +3,20 @@
 %======================================================================
 
 %% Clean things up and what not
-clear all;clc;close all;
+clear;clc;close all;
 s = tf('s');
 
-load('Conservative.mat')
-load('Aggresive.mat')
+load('Aggressive.mat')
+% load('Conservative_PII.mat')
+load('Plant.mat')
+% load('Conservative_PII_PZ.mat')
 
 %% Define your plant
 %======================================================================
 % Adjust the model as needed
 %======================================================================
 % G_nom = 0.01/s;
-G_nom = Conservative;
+G_nom = G;
 
 % Set the noise level you want to work with
 Noise = 0;
@@ -24,14 +26,15 @@ Noise = 0;
 % After defining it you should be able to run the simulink file to generate
 % the data.
 %======================================================================
-D_c = 0.0001;
-
-Kp = .0001*43500;  %Ki/kp = position of pole
-Ki = .01*43500;
-Kd = 0;
-D_roll = 100/(s+200);
-
-D_c = (Kp + Ki/s)*D_roll;
+% D_c = 0.0001;
+% 
+% Kp = .0001*43500;  %Ki/kp = position of pole
+% Ki = .01*43500;
+% Kd = 0;
+% D_roll = 100/(s+200);
+% 
+% D_c = (Kp + Ki/s)*D_roll;
+D_c = C;
 
 %% Define the input parameters for a step
 times = [0 0.5 0.50001 1 1.0001];

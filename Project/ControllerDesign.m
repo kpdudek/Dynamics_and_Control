@@ -6,18 +6,21 @@ load('Conservative.mat')
 load('Aggresive.mat')
 load('Average.mat')
 load('TwoPOneZ.mat')
+load('Positive.mat')
+load('5P4Z.mat')
+load('P5Z3.mat')
 
 
-model = TwoPOneZ;
+model = Poles_5_Zeros_3 * -1;
 %% Closed loop step response of Plant
 CL_P = feedback(model,1);
 figure('Name','CL of Plant')
 step(CL_P)
 
 %% PII Controller
-kp = .01;
-ki = .001;
-Dc = (kp + (ki/s));
+kp = .0001;
+ki = .000001;
+Dc = (kp + (ki/s^2));
 
 %% OL Bode of PII Controller
 bode(Dc*model)
