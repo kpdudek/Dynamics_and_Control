@@ -1,15 +1,15 @@
 %
 % This function returns the transfer functions for the conservative controller and aggressive
 % controller denoted as:
-%   C_c --> conservative
-%   C_a --> aggressive
+%   Dc1 --> conservative
+%   Dc2 --> aggressive
 %
 %
-function [C_c,C_a] = innealtoireachtControllers()
+function [Dc1,Dc2] = innealtoireachtControllers()
 c = load('Conservative_PII_PZ.mat');
 a = load('Aggressive.mat');
 
-C_c = c.C;
-C_a = a.C;
+Dc1 = c.C;
+Dc2 = a.C;
 end
 
