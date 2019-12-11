@@ -2,38 +2,45 @@
 clear;clc;close all;
 s = tf('s');
 
-load('Conservative.mat')
-load('Aggresive.mat')
-load('Average.mat')
-load('TwoPOneZ.mat')
-load('Positive.mat')
-load('5P4Z.mat')
-load('P5Z3.mat')
+C = load('Conservative_PII_PZ.mat');
+C2 = load('Conservative_PII_PZ_2.mat');
+A = load('Aggressive.mat');
+P = load('Plant_5P4Z.mat');
+W = load('WierdAggressive.mat','C');
+A2 = load('aggro_controller_2.mat');
+A3 = load('PID_Notch.mat','C');
 
+model = P.G;
 
-model = Poles_5_Zeros_3 * -1;
 %% Closed loop step response of Plant
 CL_P = feedback(model,1);
 figure('Name','CL of Plant')
 step(CL_P)
 
-%% PII Controller
-kp = .0001;
-ki = .000001;
-Dc = (kp + (ki/s^2));
+%% Controller
+Dc = C2.C;
 
-%% OL Bode of PII Controller
+%% OL Bode of controller and Model
 bode(Dc*model)
 margin(Dc*model)
+myopt = bodeoptions;
+myopt.Grid = 'on'; myOpt.FreqUnits = 'Hz';
+myopt.XLabel.FontSize = 16; myopt.YLabel.FontSize = 16;
+myopt.TickLabel.FontSize = 16;
+myopt.Title.String = '';
+set(findall(gcf,'Type','line'),'LineWidth',2)
+grid on
 
-%% Step of PII
-CL_PII = feedback(Dc*model,1);
-figure('Name','PII Control')
-step(CL_PII)
+%% Step of Controller and Model
+CL_Dc = feedback(Dc*model,1);
+figure('Name','Controller')
+step(CL_Dc)
+stepinfo(CL_Dc)
 
 %% Ramp of PII
-t = 0:.1:10000;
-lsim(CL_PII,t,t)
+CL_Dc = feedback(Dc*model,1);
+t = 0:.00001:.1;
+lsim(CL_Dc,t,t)
 
 %% CONTROL SYSTEM DESIGNER
 controlSystemDesigner('bode',model)

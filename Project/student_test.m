@@ -6,10 +6,11 @@
 clear;clc;close all;
 s = tf('s');
 
-load('Aggressive.mat')
-% load('Conservative_PII.mat')
-load('Plant.mat')
-% load('Conservative_PII_PZ.mat')
+% load('Aggressive.mat')
+% load('Conservative_PII_PZ_2_with_Attenuation.mat')
+load('PID_Notch.mat','C');
+load('Plant_5P4Z.mat')
+
 
 %% Define your plant
 %======================================================================
